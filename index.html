@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Мультимедиа на сайте</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      background-color: #333;
+      padding: 10px;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    nav li {
+      margin-right: 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 5px 10px;
+    }
+
+    section {
+      display: none;
+      padding: 20px;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: tomato;
+      animation: move 2s infinite alternate;
+    }
+
+    @keyframes move {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(300px); }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <ul>
+    <li><a href="#" data-target="audio">Аудио</a></li>
+    <li><a href="#" data-target="video">Видео</a></li>
+    <li><a href="#" data-target="map">Карта</a></li>
+    <li><a href="#" data-target="animation">Анимация</a></li>
+  </ul>
+</nav>
+
+<section id="audio" class="active">
+  <h2>Аудио</h2>
+  <p>Пример встроенного аудио:</p>
+  <audio controls>
+    <source src="audio.mp3" type="audio/mpeg">
+    Ваш браузер не поддерживает аудио.
+  </audio>
+</section>
+
+<section id="video">
+  <h2>Видео</h2>
+  <p>Пример встроенного видео:</p>
+  <video width="320" height="240" controls>
+    <source src="video.mp4" type="video/mp4">
+    Ваш браузер не поддерживает видео.
+  </video>
+  <p>Или видео с YouTube:</p>
+  <iframe width="320" height="240" src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+    title="YouTube video" frameborder="0" allowfullscreen></iframe>
+</section>
+
+<section id="map">
+  <h2>Карта</h2>
+  <p>Расположение университета UIB:</p>
+  <iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2924.690374392185!2d76.91594047614755!3d43.23623127913632!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38836eb2640a250b%3A0x982b1ee408b1f27b!2sUIB%20University!5e0!3m2!1sen!2skz!4v1712345678910"
+    width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+  </iframe>
+</section>
+
+<section id="animation">
+  <h2>Анимация</h2>
+  <p>Пример CSS-анимации:</p>
+  <div class="box"></div>
+</section>
+
+<script>
+  const navLinks = document.querySelectorAll('nav a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', function(event) {
+      event.preventDefault();
+      const target = this.getAttribute('data-target');
+
+      document.querySelectorAll('section').forEach(sec => {
+        sec.classList.remove('active');
+      });
+
+      document.getElementById(target).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
